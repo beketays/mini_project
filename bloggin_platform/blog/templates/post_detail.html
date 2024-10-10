@@ -8,7 +8,6 @@
 		<p>{{ post.content }}</p>
 	</div>
 
-
 	{% if request.user == post.author or request.user.is_staff %}
 		<div class="elements">
 			<a href="{% url 'post-edit' post.id %}" class="btn">Edit Post</a>
@@ -25,7 +24,7 @@
 			{% for comment in post.comments.all %}
 				<li class="comment">
 					<p>{{ comment.content }}</p>
-					<small>By {{ comment.author.username }} | {{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+					<small>By <a href="{% url 'profile' comment.author.username %}">{{ comment.author.username }}</a> | {{ comment.created_at|date:"F j, Y, g:i a" }}</small>
 				</li>
 			{% empty %}
 				<li class="list-group-item">No comments yet. Be the first to comment!</li>
@@ -49,7 +48,6 @@
 		</div>
 		{% endif %}
 	</div>
-
 
 	<a href="{% url 'post-list' %}" class="btn btn-secondary mt-3">Back to All Posts</a>
 </div>

@@ -4,7 +4,7 @@ from .views import register, profile_view, edit_profile, follow_user, unfollow_u
 
 urlpatterns = [
     path('register/', register, name='register'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),  # Login view
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='post-list'), name='logout'),
     path('profile/', user_profile, name='profile'),
     path('<str:username>/', profile_view, name='profile'),

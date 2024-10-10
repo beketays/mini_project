@@ -9,12 +9,9 @@ li {
 }
 
 a {
-    color: black;
+    color: darkblue;
     text-decoration: none;
 }
-
-
-
 
 .navbar {
     display: flex;

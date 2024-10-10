@@ -5,14 +5,12 @@
     <h1>Posts</h1>
 
     <form method="GET" action="{% url 'post-list' %}" class="search">
-
             <input type="text" name="q" class="input" placeholder="Search by title" value="{{ request.GET.q }}">
             <div>
                 <button type="submit" class="btn">Search</button>
                 <a href="{% url 'post-list' %}">Clear</a>
             </div>
     </form>
-
 
     <ul>
         {% for post in posts %}
@@ -62,14 +60,11 @@
         {% endif %}
     </ul>
 
-
-
     <div class="pagination">
         {% if user.is_authenticated%}
         <a href="{% url 'post-create' %}" class="btn">Create New Post</a>
         {% endif %}
     </div>
-
 
 </div>
 {% endblock content %}

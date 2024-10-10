@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.views import View
 from django.urls import reverse_lazy
 from django.db.models import Q
-
 from .forms import PostForm, CommentForm
 from .models import Post
 
@@ -12,7 +11,7 @@ class PostListView(ListView):
     template_name = 'post_list.html'
     context_object_name = 'posts'
     ordering = ['-created_at']
-    paginate_by = 10
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -43,7 +42,6 @@ class PostUpdateView(UpdateView):
 
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'post_confirm_delete.html'
     success_url = reverse_lazy('post-list')
 
 
