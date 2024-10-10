@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>{{ profile.user.username }}'s Profile</h1>
+    <div class="elements">
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user.username }}'s profile picture" width="150">
+        {% else %}
+            <p>No profile picture</p>
+        {% endif %}
+    </div>
+
+    <div class="elements">
+        <p>Bio: {{ profile.bio }}</p>
+
+        {% if request.user != profile.user and user.is_authenticated%}
+            {% if check_follow %}
+                <form method="POST" action="{% url 'unfollow' profile.user.username %}">
+                    {% csrf_token %}
+                    <button type="submit">Unfollow</button>
+                </form>
+            {% else %}
+                <form method="POST" action="{% url 'follow' profile.user.username %}">
+                    {% csrf_token %}
+                    <button type="submit">Follow</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if request.user == profile.user %}
+        <p><a href="{% url 'edit-profile' %}" class="btn">Edit Profile</a></p>
+    {% endif %}
+</div>
+
+{% endblock %}

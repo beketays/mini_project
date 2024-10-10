@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content%}
+<div class="container">
+    <h1>{{ view.object.id|yesno:"Edit Post, Create New Post" }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">{{ view.object.id|yesno:"Update,Create" }}</button>
+    </form>
+    <a href="{% url 'post-list' %}">Back to Posts</a>
+</div>
+{% endblock content %}

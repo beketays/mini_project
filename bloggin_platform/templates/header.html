@@ -1,0 +1,27 @@
+{% block header %}
+<nav class="navbar">
+    <a href="{% url 'post-list' %}">MINI PROJECT - BLOGGING PLATFORM</a>
+    <ul class="navbar_func">
+    {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'profile' %}">Profile</a>
+        </li>
+        <li>
+            <a >
+                <form id="logout-form" method="POST" action="{%url 'logout'%}">
+                {%csrf_token%}
+                <button type="submit" class="logout">Logout</button>
+                </form>
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+            <a href="{% url 'register' %}">Register</a>
+        </li>
+    {% endif %}
+    </ul>
+</nav>
+{% endblock header%}
